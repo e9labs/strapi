@@ -1,35 +1,28 @@
 {
-
-  "ConfigPage.title": "Upload - Settings",
-  "ConfigPage.description": "Configure the upload plugin",
-
-  "EditForm.Input.number.label": "Maximum size allowed (in MB)",
-  "EditForm.Input.select.label": "Providers",
-  "EditForm.Input.select.inputDescription": "Files can either be uploaded on your server or on external providers.",
-  "EditForm.Input.toggle.label": "Enable file upload",
-
-  "EmptyLi.message": "There are no uploaded files",
-
-  "EntriesNumber.number": "{number} file found",
-  "EntriesNumber.number.plural": "{number} files found",
-
-  "HomePage.title": "Upload",
-  "HomePage.description": "Discover all the uploaded files",
-  "HomePage.InputSearch.placeholder": "Search for a file...",
-
-  "Li.linkCopied": "Link copied into the clipboard",
-
-  "ListHeader.type": "Type",
+  "ConfigPage.description": "Konfiguriere das Hochladen-Plugin",
+  "ConfigPage.title": "Hochladen - Einstellungen",
+  "EditForm.Input.number.label": "Maximal zulässige Größe (in MB)",
+  "EditForm.Input.select.inputDescription": "Dateien können entweder auf deinem Server oder bei einem externe Anbieter hochgeladen werden.",
+  "EditForm.Input.select.label": "Anbieter",
+  "EditForm.Input.toggle.label": "Datei -hinzufügen aktivieren",
+  "EmptyLi.message": "Es gibt keine hochgeladenen Dateien",
+  "EntriesNumber.number": "{number} Datei gefunden",
+  "EntriesNumber.number.plural": "{number} Dateien gefunden",
+  "HomePage.InputSearch.placeholder": "Suche nach einer Datei...",
+  "HomePage.description": "Übersicht über alle hochgeladenen Dateien.",
+  "HomePage.title": "Dateien hochladen",
+  "Li.linkCopied": "Link in die Zwischenablage kopiert",
   "ListHeader.hash": "Hash",
   "ListHeader.name": "Name",
-  "ListHeader.updated": "Updated",
-  "ListHeader.size": "Size",
-  "ListHeader.related": "Related to",
-
-  "PluginInputFile.text": "Drag & drop your files into this area or {link} from a file to upload",
-  "PluginInputFile.link": "browse",
-  
-  "notification.delete.success": "The file has been deleted",
-  "notification.dropFile.success": "Your file has been uploaded",
-  "notification.dropFiles.success": "{number} files have been uploaded"
+  "ListHeader.related": "Verbunden mit",
+  "ListHeader.size": "Größe",
+  "ListHeader.type": "Art",
+  "ListHeader.updated": "Aktualisiert",
+  "PluginInputFile.link": "wähle",
+  "PluginInputFile.loading": "Deine Dateien werden hochgeladen...",
+  "PluginInputFile.text": "Ziehe eine Datei hierher oder {link} eine Datei zum hochladen aus",
+  "notification.config.success": "Die Einstellungen wurden aktualisiert",
+  "notification.delete.success": "Die Datei wurde gelöscht",
+  "notification.dropFile.success": "Deine Datei wurde hochgeladen",
+  "notification.dropFiles.success": "{number} Dateien wurden hochgeladen"
 }

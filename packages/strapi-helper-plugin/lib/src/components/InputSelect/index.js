@@ -14,6 +14,7 @@ import SelectOption from 'components/SelectOption';
 
 import styles from './styles.scss';
 
+/* eslint-disable jsx-a11y/no-autofocus */
 function InputSelect(props) {
   return (
     <select
@@ -23,6 +24,7 @@ function InputSelect(props) {
         'form-control',
         !props.deactivateErrorHighlight && props.error && 'is-invalid',
         !isEmpty(props.className) && props.className,
+        props.disabled && styles.inputSelectDisabled,
       )}
       disabled={props.disabled}
       id={props.name}
@@ -30,6 +32,7 @@ function InputSelect(props) {
       onBlur={props.onBlur}
       onChange={props.onChange}
       onFocus={props.onFocus}
+      ref={props.inputRef}
       style={props.style}
       tabIndex={props.tabIndex}
       value={props.value}
@@ -39,7 +42,7 @@ function InputSelect(props) {
           return <SelectOption key={key} {...option} />;
         }
 
-        return <option key={key} value={option}>{option}</option>
+        return <option key={key} value={option}>{option}</option>;
       })}
     </select>
   );
@@ -51,6 +54,7 @@ InputSelect.defaultProps = {
   deactivateErrorHighlight: false,
   disabled: false,
   error: false,
+  inputRef: () => {},
   onBlur: () => {},
   onFocus: () => {},
   style: {},
@@ -63,6 +67,7 @@ InputSelect.propTypes = {
   deactivateErrorHighlight: PropTypes.bool,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
+  inputRef: PropTypes.func,
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func.isRequired,

@@ -4,6 +4,7 @@
  *
  */
 
+/* eslint-disable jsx-a11y/no-autofocus */
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { isEmpty } from 'lodash';
@@ -13,8 +14,10 @@ import cn from 'classnames';
 import styles from './styles.scss';
 
 function InputTextArea(props) {
+  const placeholder = isEmpty(props.placeholder) ? 'app.utils.placeholder.defaultMessage' : props.placeholder;
+
   return (
-    <FormattedMessage id={props.placeholder} defaultMessage={props.placeholder}>
+    <FormattedMessage id={placeholder} defaultMessage={placeholder}>
       {(message) => (
         <textarea
           autoFocus={props.autoFocus}
@@ -60,7 +63,9 @@ InputTextArea.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
   onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   style: PropTypes.object,
   tabIndex: PropTypes.string,

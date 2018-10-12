@@ -6,6 +6,8 @@ import { includes, mapKeys, reject } from 'lodash';
  * @param  {String} [type='text']    Optionnal: the input's type only for email
  * @return {Array}                  Array of errors to be displayed
  */
+
+/* eslint-disable no-useless-escape */
 const validateInput = (value, inputValidations = {}, type = 'text') => {
   let errors = [];
 
@@ -21,7 +23,7 @@ const validateInput = (value, inputValidations = {}, type = 'text') => {
         }
         break;
       case 'maxLength':
-        if (value.length > validationValue) {
+        if (value && value.length > validationValue) {
           errors.push({ id: 'components.Input.error.validation.maxLength' });
         }
         break;
@@ -31,18 +33,27 @@ const validateInput = (value, inputValidations = {}, type = 'text') => {
         }
         break;
       case 'minLength':
-        if (value.length < validationValue) {
+        if (!value || value.length < validationValue) {
           errors.push({ id: 'components.Input.error.validation.minLength' });
         }
         break;
       case 'required':
-        if (value.length === 0) {
+        if (value == null || value.length === 0) {
           errors.push({ id: 'components.Input.error.validation.required' });
         }
         break;
       case 'regex':
         if (!new RegExp(validationValue).test(value)) {
           errors.push({ id: 'components.Input.error.validation.regex' });
+        }
+        break;
+      case 'type':
+        if (validationValue === 'json') {
+          try {
+            value = JSON.parse(value);
+          } catch(err) {
+            errors.push({ id: 'components.Input.error.validation.json' });
+          }
         }
         break;
       default:
@@ -59,6 +70,6 @@ const validateInput = (value, inputValidations = {}, type = 'text') => {
   }
 
   return errors;
-}
+};
 
 export default validateInput;

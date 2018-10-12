@@ -1,16 +1,34 @@
-**Node.js version**:
+<!-- ⚠️ If you do not respect this template your issue will be closed. -->
 
-**npm version**:
+<!-- =============================================================================== -->
+<!-- ⚠️ If you are not using the current Strapi release, you will be asked to update. -->
+<!-- Please see the wiki for guides on upgrading to the latest release. -->
+<!-- =============================================================================== -->
 
-**Strapi version**:
+<!-- ⚠️ Make sure to browse the opened and closed issues before submitting your issue. -->
 
-**Operating system**:
+<!-- ⚠️ Before writing your issue make sure you are using:-->
+<!-- Node 10.x.x -->
+<!-- npm 6.x.x -->
 
+**Informations**
+- **Node.js version**: 
+- **npm version**: 
+- **Strapi version**: <!-- Please make sure you are on the latest version -->
+- **Database**: 
+- **Operating system**: 
 
-**Do you want to request a *feature* or report a *bug*?**
 
 **What is the current behavior?**
 
-**If the current behavior is a bug, please provide the steps to reproduce the problem**
+
+
+**Steps to reproduce the problem**
+
+
 
 **What is the expected behavior?**
+
+
+
+**Suggested solutions**

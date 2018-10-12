@@ -7,6 +7,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
+
 import styles from './styles.scss';
 
 /* eslint-disable react/require-default-props */
@@ -57,7 +59,7 @@ const renderIde = () => (
           &nbsp;"port": 1337,
           <br />
           <span style={{ color: '#006EE7'}}>
-            &nbsp;"autoReload": true,
+            &nbsp;"autoReload": &#123; enabled: true &#125;
           </span>
           <br />
           &nbsp;"proxi": &#123;
@@ -84,5 +86,12 @@ const renderButton = () => (
     <a className={cn(styles.primary, 'btn')} href="http://strapi.io" target="_blank">Read the documentation</a>
   </div>
 );
+
+BlockerComponent.propTypes = {
+  blockerComponentContent: PropTypes.string.isRequired,
+  blockerComponentDescription: PropTypes.string.isRequired,
+  blockerComponentIcon: PropTypes.string.isRequired,
+  blockerComponentTitle: PropTypes.string.isRequired,
+};
 
 export default BlockerComponent;

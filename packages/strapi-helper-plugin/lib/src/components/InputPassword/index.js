@@ -12,6 +12,7 @@ import cn from 'classnames';
 
 import styles from './styles.scss';
 
+/* eslint-disable jsx-a11y/no-autofocus */
 class InputPassword extends React.Component {
   state = { showPassword: false };
 
@@ -33,12 +34,12 @@ class InputPassword extends React.Component {
       tabIndex,
       value,
     } = this.props;
-
+    const formattedPlaceholder = placeholder === '' ? 'app.utils.placeholder.defaultMessage' : placeholder;
     const eyeColor = this.state.showPassword ? { color: 'black' }  : { color: '#9EA7B8' };
 
     return (
       <Fragment>
-        <FormattedMessage id={placeholder} defaultMessage={placeholder}>
+        <FormattedMessage id={formattedPlaceholder} defaultMessage={formattedPlaceholder}>
           {(message) => (
             <input
               autoComplete="new-password"

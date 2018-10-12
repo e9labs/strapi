@@ -3,6 +3,7 @@ coverage
 build
 node_modules
 jwt.json
+config/layout.json
 actions.json
 
 # Cruft

@@ -9,12 +9,13 @@ import { isEmpty } from 'lodash';
 
 import styles from './styles.scss';
 
+/* eslint-disable jsx-a11y/no-autofocus */
 class InputToggle extends React.Component {
   handleClick = (e) => {
     const target = {
       name: this.props.name,
       type: 'toggle',
-      value: e.target.id === 'on',
+      value: e.target.id.includes('__ON__'),
     };
 
     this.props.onChange({ target });
@@ -27,13 +28,15 @@ class InputToggle extends React.Component {
       disabled,
       deactivateErrorHighlight,
       error,
+      name,
       style,
       tabIndex,
       value,
     } = this.props;
 
     return (
-      <div className={cn(
+      <div
+        className={cn(
           'btn-group',
           styles.inputToggleContainer,
           !isEmpty(className) && className,
@@ -45,7 +48,7 @@ class InputToggle extends React.Component {
           autoFocus={autoFocus}
           disabled={disabled}
           className={cn('btn', !value && styles.gradientOff)}
-          id="off"
+          id={`__OFF__${name}`}
           onClick={this.handleClick}
           tabIndex={tabIndex}
           type="button"
@@ -55,7 +58,7 @@ class InputToggle extends React.Component {
         <button
           disabled={disabled}
           className={cn('btn', value && styles.gradientOn)}
-          id="on"
+          id={`__ON__${name}`}
           onClick={this.handleClick}
           type="button"
         >

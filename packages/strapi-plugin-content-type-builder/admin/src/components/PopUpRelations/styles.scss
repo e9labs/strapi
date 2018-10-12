@@ -42,7 +42,7 @@
    text-transform: capitalize;
    margin-right: 1.8rem;
    cursor: pointer;
-   font-family: Lato;
+   font-family: 'Lato', sans-serif;
    &:focus {
      outline: 0;
    }
@@ -66,7 +66,7 @@
 }
 
 .modalPosition {
-  // top: 16.8rem;
+  padding-top: 2px;
   > div {
     border:none;
     border-radius: 2px;
@@ -123,15 +123,15 @@
 }
 
 .popUpRelations {
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
 }
 
 .primary {
   height: 3rem;
-  font-family: Lato!important;
+  font-family: 'Lato', sans-serif !important;
   margin-left: 1.9rem!important;
   cursor: pointer;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   &:focus {
     outline: 0;
   }
@@ -185,7 +185,7 @@
 
 .secondary {
   min-width: 100px;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   color: #F64D0A;
   border: 0.1rem solid #F64D0A;
   cursor: pointer;
@@ -205,4 +205,33 @@
 .titleContainer {
   font-size: 1.8rem;
   font-weight: bold;
+}
+
+.primaryAddShape {
+  min-width: 12rem;
+  margin-left: 17px!important;
+  padding: 0 15px;
+  background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+  border: none!important;
+  border-radius: 3px;
+  color: white;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 600;
+  &:focus {
+    outline: 0;
+  }
+  &:hover, &:active {
+    border: none!important;
+    background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,.15);
+    color: white;
+  }
+  &:before {
+    content: '\F067';
+    font-family: 'FontAwesome';
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-right: 13px;
+  }
+  -webkit-font-smoothing: antialiased;
 }

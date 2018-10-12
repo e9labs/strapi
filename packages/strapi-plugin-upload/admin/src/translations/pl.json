@@ -1,34 +1,28 @@
 {
-  "ConfigPage.title": "Upload - Settings",
-  "ConfigPage.description": "Configure the upload plugin",
-
-  "EditForm.Input.number.label": "Maximum size allowed (in MB)",
-  "EditForm.Input.select.label": "Providers",
-  "EditForm.Input.select.inputDescription": "Files can either be uploaded on your server or on external providers.",
-  "EditForm.Input.toggle.label": "Enable file upload",
-
-  "EmptyLi.message": "There are no uploaded files",
-
-  "EntriesNumber.number": "{number} file found",
-  "EntriesNumber.number.plural": "{number} files found",
-
-  "HomePage.title": "Upload",
-  "HomePage.description": "Discover all the uploaded files",
-  "HomePage.InputSearch.placeholder": "Search for a file...",
-
-  "Li.linkCopied": "Link copied into the clipboard",
-
-  "ListHeader.type": "Type",
+  "ConfigPage.description": "Konfiguracja wtyczki służącej do przesyłania plików.",
+  "ConfigPage.title": "Pliki - Ustawienia",
+  "EditForm.Input.number.label": "Maksymalny dozwolony rozmiar (w MB)",
+  "EditForm.Input.select.inputDescription": "Pliki mogą zostać przesłane na serwer lub zewnętrzne źródła.",
+  "EditForm.Input.select.label": "Dostawcy",
+  "EditForm.Input.toggle.label": "Włącz przesyłanie plików",
+  "EmptyLi.message": "Żaden plik nie został jeszcze przesłany",
+  "EntriesNumber.number": "{number} plik znaleziony",
+  "EntriesNumber.number.plural": "{number} plików znalezionych",
+  "HomePage.InputSearch.placeholder": "Szukaj...",
+  "HomePage.description": "Przeglądaj wszystkie przesłane pliki.",
+  "HomePage.title": "Pliki",
+  "Li.linkCopied": "Link został skopiowany do schowka",
   "ListHeader.hash": "Hash",
-  "ListHeader.name": "Name",
-  "ListHeader.updated": "Updated",
-  "ListHeader.size": "Size",
-  "ListHeader.related": "Related to",
-
-  "PluginInputFile.text": "Drag & drop your files into this area or {link} from a file to upload",
-  "PluginInputFile.link": "browse",
-
-  "notification.delete.success": "The file has been deleted",
-  "notification.dropFile.success": "Your file has been uploaded",
-  "notification.dropFiles.success": "{number} files have been uploaded"
+  "ListHeader.name": "Nazwa",
+  "ListHeader.related": "Związany z",
+  "ListHeader.size": "Rozmiar",
+  "ListHeader.type": "Typ",
+  "ListHeader.updated": "Aktualizacja",
+  "PluginInputFile.link": "przeglądaj",
+  "PluginInputFile.loading": "Twoje pliki są właśnie przesyłane...",
+  "PluginInputFile.text": "Przeciągnij & upuść pliki w to miejsce lub {link} pliki do przesłania.",
+  "notification.config.success": "Ustawienia zostały zaaktualizowane",
+  "notification.delete.success": "Plik został usunięty",
+  "notification.dropFile.success": "Plik został przesłany",
+  "notification.dropFiles.success": "{number} plików zostało przesłanych"
 }

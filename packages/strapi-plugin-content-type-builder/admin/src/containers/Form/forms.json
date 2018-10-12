@@ -4,18 +4,6 @@
       "items": [
         {
           "label": {
-            "id": "content-type-builder.form.contentType.item.connections"
-          },
-          "name": "connection",
-          "type": "select",
-          "value": "default",
-          "items": [{}],
-          "validations": {
-            "required": true
-          }
-        },
-        {
-          "label": {
             "id": "content-type-builder.form.contentType.item.name"
           },
           "name": "name",
@@ -31,7 +19,7 @@
                 "parent": {
                   "type": "a",
                   "attr": {
-                    "href": "https://v3.strapi.io/documentation/concepts/concepts.html#models",
+                    "href": "https://strapi.io/documentation/concepts/concepts.html#models",
                     "target": "_blank"
                   }
                 },
@@ -43,6 +31,18 @@
                 }
               }
             }
+          }
+        },
+        {
+          "label": {
+            "id": "content-type-builder.form.contentType.item.connections"
+          },
+          "name": "connection",
+          "type": "select",
+          "value": "default",
+          "items": [{}],
+          "validations": {
+            "required": true
           }
         },
         {
@@ -115,6 +115,10 @@
       {
         "type": "relation",
         "description": "content-type-builder.popUpForm.attributes.relation.description"
+      },
+      {
+        "type": "enumeration",
+        "description": "content-type-builder.popUpForm.attributes.enumeration.description"
       }
     ]
   },
@@ -137,6 +141,31 @@
       },
       "advancedSettings": {
         "items": [
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "textarea",
+            "value": "",
+            "validations": {}
+          },
+          {
+            "title": {
+              "id": "content-type-builder.form.attribute.item.appearance.name"
+            },
+            "label": {
+              "id": "content-type-builder.form.attribute.item.appearance.label"
+            },
+            "name": "params.appearance.WYSIWYG",
+            "type": "checkbox",
+            "value": false,
+            "validations": {},
+            "inputDescription": {
+              "id": "content-type-builder.form.attribute.item.appearance.description"
+            },
+            "inputStyle": { "fontWeight": "500" }
+          },
           {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
@@ -242,6 +271,15 @@
       "advancedSettings": {
         "items": [
           {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "number",
+            "value": 0,
+            "validations": {}
+          },
+          {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
             },
@@ -329,6 +367,15 @@
       },
       "advancedSettings": {
         "items": [
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "string",
+            "value": "",
+            "validations": {}
+          },
           {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
@@ -418,6 +465,15 @@
       "advancedSettings": {
         "items": [
           {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "email",
+            "value": "",
+            "validations": {}
+          },
+          {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
             },
@@ -506,6 +562,15 @@
       "advancedSettings": {
         "items": [
           {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "password",
+            "value": "",
+            "validations": {}
+          },
+          {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
             },
@@ -582,6 +647,15 @@
       "advancedSettings": {
         "items": [
           {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "date",
+            "value": "",
+            "validations": {}
+          },
+          {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
             },
@@ -629,6 +703,18 @@
       },
       "advancedSettings": {
         "items": [
+          {
+            "title": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default.checkboxLabel"
+            },
+            "name": "params.default",
+            "type": "checkbox",
+            "value": false,
+            "validations": {}
+          },
           {
             "title": {
               "id": "content-type-builder.form.attribute.item.settings.name"
@@ -827,6 +913,87 @@
             "type": "string",
             "value": "",
             "validations": {}
+          }
+        ]
+      }
+    },
+    "enumeration": {
+      "baseSettings": {
+        "items": [
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.item.enumeration.name"
+            },
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": {
+              "required": true
+            }
+          },
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.item.enumeration.rules"
+            },
+            "name": "params.enumValue",
+            "type": "textarea",
+            "placeholder": "content-type-builder.form.attribute.item.enumeration.placeholder",
+            "value": false,
+            "validations": {
+              "required": true
+            }
+          }
+        ]
+      },
+      "advancedSettings": {
+        "items": [
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.settings.default"
+            },
+            "name": "params.default",
+            "type": "string",
+            "value": "",
+            "validations": {}
+          },
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.item.enumeration.graphql"
+            },
+            "name": "params.enumName",
+            "type": "string",
+            "value": "",
+            "validations": {},
+            "inputDescription": {
+              "id": "content-type-builder.form.attribute.item.enumeration.graphql.description"
+            }
+          },
+          {
+            "title": {
+              "id": "content-type-builder.form.attribute.item.settings.name"
+            },
+            "label": {
+              "id": "content-type-builder.form.attribute.item.requiredField"
+            },
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": {},
+            "inputDescription": {
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+            }
+          },
+          {
+            "label": {
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+            },
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": {},
+            "inputDescription": {
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+            }
           }
         ]
       }

@@ -1,25 +1,21 @@
 // Important modules this config uses
-const _ = require('lodash');
 const path = require('path');
-
-const base = require('./webpack.base.babel');
+const _ = require('lodash');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const pluginId = pkg.name.replace(/^strapi-plugin-/i, '');
-const dllPlugin = pkg.dllPlugin;
+const base = require('./webpack.base.babel');
 
 const isAdmin = process.env.IS_ADMIN === 'true';
-const isSetup = path.resolve(process.env.PWD, '..', '..') === path.resolve(process.env.INIT_CWD);
+// const isSetup = path.resolve(process.env.PWD, '..', '..') === path.resolve(process.env.INIT_CWD);
+const isSetup = process.env.IS_MONOREPO;
 const appPath = (() => {
   if (process.env.APP_PATH) {
     return process.env.APP_PATH;
@@ -37,28 +33,30 @@ const adminPath = (() => {
 
 const rootAdminpath = (() => {
   if (isSetup) {
-    return isAdmin ? path.resolve(appPath, 'strapi-admin') : path.resolve(appPath, 'packages', 'strapi-admin');
+    return isAdmin
+      ? path.resolve(appPath, 'strapi-admin')
+      : path.resolve(appPath, 'packages', 'strapi-admin');
   }
   return path.resolve(appPath, 'admin');
 })();
 
 const plugins = [
   new webpack.DllReferencePlugin({
-    manifest: require(path.resolve(rootAdminpath, 'admin', 'src', 'config', 'manifest.json'))
+    manifest: require(path.resolve(rootAdminpath, 'admin', 'src', 'config', 'manifest.json')),
   }),
   // Minify and optimize the JavaScript
   new webpack.optimize.UglifyJsPlugin({
     sourceMap: true,
     parallel: true,
     compress: {
-      warnings: false
+      warnings: false,
     },
     uglifyOptions: {
       ecma: 8,
     },
   }),
   new webpack.LoaderOptionsPlugin({
-    minimize: true
+    minimize: true,
   }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   // new BundleAnalyzerPlugin(),
@@ -68,7 +66,13 @@ let publicPath;
 
 if (isAdmin && !isSetup) {
   // Load server configuration.
-  const serverConfig = path.resolve(appPath, 'config', 'environments', _.lowerCase(process.env.NODE_ENV), 'server.json');
+  const serverConfig = path.resolve(
+    appPath,
+    'config',
+    'environments',
+    _.lowerCase(process.env.NODE_ENV),
+    'server.json',
+  );
 
   try {
     const server = require(serverConfig);
@@ -87,33 +91,40 @@ if (isAdmin && !isSetup) {
 
 // Build the `index.html file`
 if (isAdmin) {
-  plugins.push(new HtmlWebpackPlugin({
-    template: 'admin/src/index.html',
-    minify: {
-      removeComments: true,
-      collapseWhitespace: true,
-      removeRedundantAttributes: true,
-      useShortDoctype: true,
-      removeEmptyAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      keepClosingSlash: true,
-      minifyJS: true,
-      minifyCSS: true,
-      minifyURLs: true,
-    },
-    chunksSortMode: 'manual',
-    chunks: ['main'],
-    inject: true,
-  }));
-  plugins.push(new ExtractTextPlugin('[name].[contenthash].css'));
-  plugins.push(new AddAssetHtmlPlugin({
-    filepath: path.resolve(__dirname, 'dist/*.dll.js')
-  }));
-  plugins.push(new CopyWebpackPlugin([{
-    from: 'config/plugins.json',
-    context: path.resolve(adminPath, 'admin', 'src'),
-    to: 'config/plugins.json'
-  }]));
+  plugins.push(
+    new HtmlWebpackPlugin({
+      template: 'admin/src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+      chunksSortMode: 'manual',
+      chunks: ['main'],
+      inject: true,
+    }),
+  );
+  plugins.push(
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(__dirname, 'dist/*.dll.js'),
+    }),
+  );
+  plugins.push(
+    new CopyWebpackPlugin([
+      {
+        from: 'config/plugins.json',
+        context: path.resolve(adminPath, 'admin', 'src'),
+        to: 'config/plugins.json',
+      },
+    ]),
+  );
 }
 
 const main = (() => {
@@ -129,15 +140,18 @@ const main = (() => {
 module.exports = base({
   // In production, we skip all hot-reloading stuff
   entry: {
-    main
+    main,
   },
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
-  output: _.omitBy({
-    filename: '[name].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
-    publicPath,
-  }, _.isUndefined),
+  output: _.omitBy(
+    {
+      filename: '[name].js',
+      chunkFilename: '[name].[chunkhash].chunk.js',
+      publicPath,
+    },
+    _.isUndefined,
+  ),
 
   // In production, we minify our CSS with cssnano
   postcssPlugins: [
@@ -169,15 +183,60 @@ module.exports = base({
 
   alias: {
     moment: 'moment/moment.js',
-    'babel-polyfill': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'babel-polyfill'),
-    'lodash': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'lodash'),
-    'immutable': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'immutable'),
-    'react-intl': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'react-intl'),
-    'react': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'react'),
-    'react-dom': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'react-dom'),
-    'react-transition-group': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'react-transition-group'),
-    'reactstrap': path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'reactstrap')
+    'babel-polyfill': path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'babel-polyfill',
+    ),
+    lodash: path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'lodash'),
+    immutable: path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'immutable',
+    ),
+    'react-intl': path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'react-intl',
+    ),
+    react: path.resolve(rootAdminpath, 'node_modules', 'strapi-helper-plugin', 'node_modules', 'react'),
+    'react-dom': path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'react-dom',
+    ),
+    'react-transition-group': path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'react-transition-group',
+    ),
+    reactstrap: path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'reactstrap',
+    ),
+    'styled-components': path.resolve(
+      rootAdminpath,
+      'node_modules',
+      'strapi-helper-plugin',
+      'node_modules',
+      'styled-components',
+    ),
   },
 
   devtool: 'cheap-module-source-map',
+  disableExtractTextPlugin: false,
+  externals: {},
 });

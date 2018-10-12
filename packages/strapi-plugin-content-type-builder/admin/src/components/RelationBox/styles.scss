@@ -11,8 +11,6 @@
   height: 3.6rem;
   width: 100%;
   padding-top: .1rem;
-  // display: flex;
-  // justify-content: center;
   position: relative;
   background-color: rgba(16, 22, 34, 0.04);
   line-height: 3.6rem;
@@ -70,6 +68,18 @@
         color: black;
       }
     }
+    > div {
+      max-height: 180px;
+      max-width: 21.5rem;
+      overflow: scroll;
+      button {
+        div {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
   }
 }
 
@@ -78,7 +88,7 @@
   padding: 0;
   border-radius: 0;
   border: none;
-  font-family: Lato;
+  font-family: 'Lato', sans-serif;
   box-shadow: 0 2px 4px rgba(203, 211, 224, .5);
 
   > div {
@@ -91,7 +101,7 @@
         cursor: pointer;
         border-bottom: 1px solid #F6F6F6;
         font-size: 1.3rem;
-        font-family: Lato;
+        font-family: 'Lato', sans-serif;
         font-weight: 400;
         text-transform: capitalize;
         color: #323740;

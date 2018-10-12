@@ -18,10 +18,6 @@
       "configurable": false,
       "required": true
     },
-    "provider": {
-      "type": "string",
-      "configurable": false
-    },
     "password": {
       "type": "password",
       "minLength": 6,
@@ -33,17 +29,21 @@
       "configurable": false,
       "private": true
     },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    }, 
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
     "role": {
       "model": "role",
       "via": "users",
       "plugin": "users-permissions",
       "configurable": false
-    },
-    "picture": {
-      "collection": "file",
-      "via": "related",
-      "plugin": "upload"
     }
-  },
-  "collectionName": "users-permissions_user"
+  }
 }
